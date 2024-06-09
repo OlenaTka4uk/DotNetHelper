@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using DotNetHelperAPI.Models;
 
 namespace DotNetHelperAPI.Data
 {
@@ -9,5 +10,6 @@ namespace DotNetHelperAPI.Data
             : base(options)
         {
         }
+        public DbSet<DotNetHelperAPI.Models.QuestionModel>? QuestionModel { get; set; }
     }
 }
