@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DotNetHelperAPI.Data;
 using DotNetHelperAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DotNetHelperAPI.Controllers
 {
@@ -58,6 +59,7 @@ namespace DotNetHelperAPI.Controllers
         }
 
         // GET: Question/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -66,6 +68,7 @@ namespace DotNetHelperAPI.Controllers
         // POST: Question/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Question,Answer")] QuestionModel questionModel)
@@ -80,6 +83,7 @@ namespace DotNetHelperAPI.Controllers
         }
 
         // GET: Question/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.QuestionModel == null)
@@ -98,6 +102,7 @@ namespace DotNetHelperAPI.Controllers
         // POST: Question/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Question,Answer")] QuestionModel questionModel)
@@ -131,6 +136,7 @@ namespace DotNetHelperAPI.Controllers
         }
 
         // GET: Question/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.QuestionModel == null)
@@ -149,6 +155,7 @@ namespace DotNetHelperAPI.Controllers
         }
 
         // POST: Question/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
