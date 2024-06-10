@@ -30,8 +30,13 @@ namespace DotNetHelperAPI.Controllers
         public async Task<IActionResult> ShowSearchForm()
         {
             return _context.QuestionModel != null ?
-                        View("ShowSearchForm") :
+                        View() :
                         Problem("Entity set 'ApplicationDbContext.QuestionModel'  is null.");
+        }
+
+        public async Task<IActionResult> ShowSearchResults(string SearchPhrase)
+        {
+            return View("Index", await _context.QuestionModel.Where(x => x.Question.Contains(SearchPhrase)).ToListAsync());
         }
 
         // GET: Question/Details/5
